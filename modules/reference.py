@@ -90,3 +90,14 @@ class CreateReference():
             geo_data = open(f_full,'wb')
             pickle.dump(gdf, geo_data)
             geo_data.close()
+
+            def run_all(dict_save_path, dataframe_save_path):
+                '''This method runs all the methods in this class and saves the geodataframe and reference dictionary'''
+                if type(dict_save_path) not in [str]:
+                    raise TypeError("dict_save_path is not in the required format. Must be a string")
+                
+                if type(dataframe_save_path) not in [str]:
+                    raise TypeError("dataframe_save_path is not in the required format. Must be a string")
+
+                self.get_df_dict(save_path=dict_save_path, save=True)
+                self.get_gdf(path_to_save=dataframe_save_path)
