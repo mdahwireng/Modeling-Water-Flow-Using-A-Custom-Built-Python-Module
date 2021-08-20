@@ -65,31 +65,31 @@ class CreateReference():
             print('Dictionary saved as {} to {}'.format(file_name, save_path))
         self.gdf_dict = gdf_dict
 
-        def get_gdf(self, path_to_save):
-            '''This method creates and saves a geodataframe of all regions and their boundaries'''
-            if type(path_to_save) not in [str]:
-                raise TypeError("path_to_save is not in the required format. Must be a string")
-            
-            gdf_dict = self.gdf_dict
+    def get_gdf(self, path_to_save):
+        '''This method creates and saves a geodataframe of all regions and their boundaries'''
+        if type(path_to_save) not in [str]:
+            raise TypeError("path_to_save is not in the required format. Must be a string")
+        
+        gdf_dict = self.gdf_dict
 
-            df = pd.DataFrame(gdf_dict)
+        df = pd.DataFrame(gdf_dict)
 
-            df.dropna(axis=0, inplace=True)
-            df.reset_index(drop=True, inplace=True)
+        df.dropna(axis=0, inplace=True)
+        df.reset_index(drop=True, inplace=True)
 
-            polygons =[]
-            for bound in df['bounds']:
-                MINX, MINY, MAXX, MAXY = [bound[0],bound[1], bound[3],bound[4]] 
-                polygon = Polygon(((MINX, MINY), (MINX, MAXY), (MAXX, MAXY), (MAXX, MINY)))
-                polygons.append(polygon)
+        polygons =[]
+        for bound in df['bounds']:
+            MINX, MINY, MAXX, MAXY = [bound[0],bound[1], bound[3],bound[4]] 
+            polygon = Polygon(((MINX, MINY), (MINX, MAXY), (MAXX, MAXY), (MAXX, MINY)))
+            polygons.append(polygon)
 
-            df['geometry'] = polygons
-            gdf = gpd.GeoDataFrame(df, geometry='geometry', crs="EPSG:3857")
-            f_name = 'geo_data.pkl'
-            f_full = path_to_save+'/'+f_name
-            geo_data = open(f_full,'wb')
-            pickle.dump(gdf, geo_data)
-            geo_data.close()
+        df['geometry'] = polygons
+        gdf = gpd.GeoDataFrame(df, geometry='geometry', crs="EPSG:3857")
+        f_name = 'geo_data.pkl'
+        f_full = path_to_save+'/'+f_name
+        geo_data = open(f_full,'wb')
+        pickle.dump(gdf, geo_data)
+        geo_data.close()
 
     def run_all(self, dict_save_path, dataframe_save_path):
         '''This method runs all the methods in this class and saves the geodataframe and reference dictionary'''
