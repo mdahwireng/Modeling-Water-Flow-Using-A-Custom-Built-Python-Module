@@ -85,7 +85,6 @@ class CreateReference():
 
             df['geometry'] = polygons
             gdf = gpd.GeoDataFrame(df, geometry='geometry', crs="EPSG:3857")
-            gdf.to_crs(epsg=4326, inplace=True)
             f_name = 'geo_data.pkl'
             f_full = path_to_save+'/'+f_name
             geo_data = open(f_full,'wb')
