@@ -22,7 +22,7 @@ class RetrieveRegion():
             grid.to_crs(epsg=3857, inplace=True)
         
         bnds_ = grid.bounds.loc[0]
-        bnds_lst = [[bnds_['minx'], bnds_['miny']], [bnds_['maxx'], bnds_['maxy']]]
+        bnds_lst = [[bnds_['minx'], bnds_['maxx']], [bnds_['miny'], bnds_['maxy']]]
         
         self.bnds = bnds_lst
         self.crs = crs
