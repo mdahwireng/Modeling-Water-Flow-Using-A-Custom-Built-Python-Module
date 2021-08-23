@@ -1,0 +1,62 @@
+{
+    "pipeline": [
+        {
+		"bounds": "([-10436887.43333523, -10435905.484106943], [5148706.389047224,5149217.145836504])",
+		"filename": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/IA_FullState/ept.json",
+		"type": "readers.ept",
+		"tag": "readdata"
+        },
+	{
+        	"type":"filters.sample",
+		"cell":0.00002,
+		"tag":"resample"
+    	},
+	{
+        	"type":"filters.outlier",
+		"method":"statistical",
+		"multiplier":2,
+		"mean_k":3,
+		"tag":"removeoutliers"
+    	},
+        {
+            	"limits": "Classification![7:7], Z[-100:3000]",
+            	"type": "filters.range",
+            	"tag": "denoise"
+        },
+        {
+            	"assignment": "Classification[:]=0",
+            	"tag": "wipeclasses",
+            	"type": "filters.assign"
+        },
+        {
+            	"out_srs": "EPSG:26915",
+            	"tag": "reprojectUTM",
+            	"type": "filters.reprojection"
+        },
+        {
+            	"tag": "groundify",
+            	"type": "filters.smrf"
+        },
+        {
+            	"limits": "Classification[2:2]",
+            	"type": "filters.range",
+            	"tag": "filtergroundclass"
+        },
+	{
+        	"type":"writers.text",
+        	"format":"csv",
+        	"order":"X,Y,Z",
+        	"keep_unspecified":"false",
+        	"filename":"outputfile3.csv"
+	},
+        {
+            	"filename": "out_put3.tif",
+            	"gdalopts": "tiled=yes,     compress=deflate",
+            	"nodata": -9999,
+            	"output_type": "idw",
+            	"resolution": 1,
+            	"type": "writers.gdal",
+            	"window_size": 6
+        }
+    ]
+}
