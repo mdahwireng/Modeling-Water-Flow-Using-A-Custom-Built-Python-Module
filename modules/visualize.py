@@ -4,26 +4,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-def viz_raster(tif_path):
-    image_data = rio.open(tif_path)
-    fig, ax = plt.subplots(figsize=(5, 5))
-
-    # use imshow so that we have something to map the colorbar to
-    image_hidden = ax.imshow(image_data, 
-                            cmap='Greys', 
-                            vmin=-30, 
-                            vmax=30)
-
-    # plot on the same axis with rio.plot.show
-    image = rio.plot.show(image_data, 
-                        transform=image_data.transform, 
-                        ax=ax, 
-                        cmap='Greys', 
-                        vmin=-30, 
-                        vmax=30)
-
-    # add colorbar using the now hidden image
-    fig.colorbar(image_hidden, ax=ax)
 
 def plot_raster_(tifile: str, img_save_path,title='', notebook=False):
     """
@@ -46,6 +26,7 @@ def plot_raster_(tifile: str, img_save_path,title='', notebook=False):
 
 
 def viz_contour(tif_path,img_path,title,notebook=False):
+  '''This function plots a contour of DEM'''
     image_data = rio.open(tif_path)
     fig, (axrgb, axhist) = plt.subplots(1, 2, figsize=(14,7))
     show((image_data), cmap='Greys_r', contour=True, ax=axrgb, title=title)
@@ -59,6 +40,7 @@ def viz_contour(tif_path,img_path,title,notebook=False):
 
 
 def viz_3d(csv_path,title, img_save_path,skip_val=None, notebook=False):
+  '''This fuction plots a 3d plots from x,y and z values from a parsed csv file'''
     points = pd.read_csv(csv_path)
     
     if skip_val:
