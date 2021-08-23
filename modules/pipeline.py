@@ -2,7 +2,7 @@ import json
 import pdal
 
 def get_raster_terrain(file_path ,bounds , csv_path , tiff_path,pipeline_path='data/pipeline.txt'):
-    
+    '''This function querries, retrieve preprocess point cloud data using a pipeline pasrsed to it'''
     with open(pipeline_path) as json_file:
         the_json = json.load(json_file)
         
