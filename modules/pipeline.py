@@ -1,7 +1,7 @@
 import json
 import pdal
 
-def get_raster_terrain(file_path ,bounds , csv_path , tiff_path,pipeline_path):
+def get_raster_terrain(file_path ,bounds , csv_path , tiff_path,pipeline_path='data/pipeline.txt'):
     
     with open(pipeline_path) as json_file:
         the_json = json.load(json_file)
