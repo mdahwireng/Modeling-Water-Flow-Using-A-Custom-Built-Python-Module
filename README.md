@@ -82,7 +82,7 @@ This module contains plot_raster_, viz_contour and viz_3d functions
 | | |notebook|Boolean|True to indicate the function is being run in a notebook, false for otherwise|
 
 ### Process_to_viz module
-This module contains a class called class ProcessToViz. This class This class encapsulate all the process from retrieval of data to visualization
+This module contains a class called class ProcessToViz. This class encapsulate all the process from retrieval of data to visualization
 
 | methods    | Mthd desc                                        | arguments         | Arg type | Description                                                      |
 |------------|--------------------------------------------------|-------------------|----------|------------------------------------------------------------------|
