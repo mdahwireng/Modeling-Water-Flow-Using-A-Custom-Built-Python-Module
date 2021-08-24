@@ -12,7 +12,6 @@
     - [pipeline module](###pipeline-module)
     - [visualize module](###visualize-module)
     - [Process_to_viz module](###process_to_viz-module)
-  - [Data](#data)
   
 ## Introduction
 This project seeks to model the relief of a farm owned by AgriTech in Iowa, USA, using publicly available data from USGS 3DEP project. This project is also a case study which leads to the creation of a python package which fetch, transform and visualize publicly available satellite and Lidar data by interacting with public APIs.
