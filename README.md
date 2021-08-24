@@ -5,7 +5,8 @@
     - [Modules](##modules)
     - [Notebooks](##notebook)
     - [Data](##data)
-  -[Documentation](##documentation)
+   
+  - [Documentation](##documentation)
   - [Modules](##modules)
     - [reference module](###reference-module)
     - [get_region module](###get_region-module)
@@ -16,7 +17,7 @@
 ## Introduction
 This project seeks to model the relief of a farm owned by AgriTech in Iowa, USA, using publicly available data from USGS 3DEP project. This project is also a case study which leads to the creation of a python package which fetch, transform and visualize publicly available satellite and Lidar data by interacting with public APIs.
 
-This package abstracts process from the querying, retrieval, conversion of coordinate systems, creating Digital Elevation Models to the visualization of produced images in both 2d and 3d.
+This package abstracts processes from the querying, retrieval, conversion of coordinate systems, creating Digital Elevation Models to the visualization of produced images in both 2d and 3d.
 
 ## Directory Structure
 ## Modules
