@@ -24,11 +24,11 @@ class ProcessToViz():
         self.bds = bds
 
     def ret_data(self):
-        '''Retrieves and preprocess data'''
+        '''Retrieves and preprocess cloud data'''
         get_raster_terrain(file_path=self.f_p ,bounds=self.bds , csv_path=self.csv_save_path , tiff_path=self.tiff_save_path, pipeline_path=self.pipeline_path)
 
     def viz(self, contour_save_path, viz_3d_save_path, raster_save_path):
-        '''This visualizes the produced'''
+        '''This visualizes the produced tif from ret_data'''
         viz_contour(tif_path=self.tiff_save_path, img_path=contour_save_path, title='DEM', notebook=True)
        
         viz_3d(csv_path=self.csv_save_path, title='DEM', img_save_path=viz_3d_save_path)
