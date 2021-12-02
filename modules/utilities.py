@@ -3,6 +3,9 @@ import geopandas as gpd
 from shapely.geometry import Polygon
 
 def create_grid(bnds, crs):
+    '''This takes a list containing a list of bounds [minx, miny, maxx, maxy] and a string for the crs ESGP:xxxxxx'''
+    print('RetrieveRegion initialized...')
+    
     espg_val = int(crs.split(':')[-1])
         
     MINX, MINY, MAXX, MAXY = bnds
