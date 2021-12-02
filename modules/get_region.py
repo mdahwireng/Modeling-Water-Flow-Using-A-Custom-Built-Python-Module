@@ -3,32 +3,17 @@ import geopandas as gpd
 import pickle
 from shapely.geometry import Polygon
 
-
+from modules.utilities import create_grid
 
 class RetrieveRegion():
     '''This class takes bounds and crs from users and returns a region the bounds given by user falls in'''
     def __init__(self, bnds, crs) -> None:
         '''This takes a list containing a list of bounds [minx, miny, maxx, maxy] and a string for the crs ESGP:xxxxxx'''
         print('RetrieveRegion initialized...')
-
-        espg_val = int(crs.split(':')[-1])
         
-        MINX, MINY, MAXX, MAXY = bnds
-        poly = Polygon(((MINX, MINY), (MINX, MAXY), (MAXX, MAXY), (MAXX, MINY), (MINX, MINY)))
-        grid = gpd.GeoDataFrame([poly], columns=["geometry"])
-        grid.set_crs(epsg=espg_val, inplace=True)
-        
-        if espg_val != 3857:
-            grid.to_crs(epsg=3857, inplace=True)
-        
-        bnds_ = grid.bounds.loc[0]
-        bnds_lst = [[bnds_['minx'], bnds_['maxx']], [bnds_['miny'], bnds_['maxy']]]
-        
-        self.bnds = bnds_lst
         self.crs = crs
-        self.espg_val=espg_val
-        self.input_gdf = grid
         self.ref_gdf = pickle.load( open( "data/geo_data.pkl", "rb" ))
+        self.bnds, self.espg_val, self.input_gdf = create_grid(bnds=bnds, crs=crs)
 
 
 
