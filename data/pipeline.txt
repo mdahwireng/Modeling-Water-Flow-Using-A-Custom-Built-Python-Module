@@ -29,7 +29,8 @@
             	"type": "filters.assign"
         },
         {
-            	"out_srs": "EPSG:26915",
+            	"in_srs": "EPSG:3857",
+				"out_srs": "EPSG:26915",
             	"tag": "reprojectUTM",
             	"type": "filters.reprojection"
         },
